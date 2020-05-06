@@ -15,13 +15,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeT-je-0Tg">
-                                <rect key="frame" x="0.0" y="198" width="414" height="501"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aeT-je-0Tg">
+                                <rect key="frame" x="0.0" y="241" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" secondItem="aeT-je-0Tg" secondAttribute="width" multiplier="1:1" id="7kg-8h-Tj4"/>
+                                </constraints>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fw-Lq-gal">
-                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fw-Lq-gal">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="2PU-79-zaO"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="gqa-GM-eKf"/>
                                     <barButtonItem systemItem="camera" id="SU9-lD-fhX">
@@ -38,13 +42,55 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="k5y-f4-yWL"/>
                                 </items>
                             </toolbar>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eks-4f-CqI">
+                                <rect key="frame" x="20" y="610" width="374" height="34"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="BOTTOM">
+                                        <attributes>
+                                            <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="18" name="Futura-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TCh-52-kYV" userLabel="Top Text Field">
+                                <rect key="frame" x="20" y="252" width="374" height="34"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="TOP">
+                                        <attributes>
+                                            <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="18" name="Futura-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="eks-4f-CqI" firstAttribute="bottom" secondItem="aeT-je-0Tg" secondAttribute="bottom" constant="-11" id="8vU-0w-bkb"/>
+                            <constraint firstItem="aeT-je-0Tg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FHr-Iq-jbd"/>
+                            <constraint firstItem="eks-4f-CqI" firstAttribute="trailing" secondItem="aeT-je-0Tg" secondAttribute="trailing" constant="-20" id="Fj6-HZ-owG"/>
+                            <constraint firstItem="6fw-Lq-gal" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="K9b-A6-Pt9"/>
+                            <constraint firstItem="TCh-52-kYV" firstAttribute="leading" secondItem="aeT-je-0Tg" secondAttribute="leading" constant="20" id="KDk-Ao-Yl7"/>
+                            <constraint firstItem="6fw-Lq-gal" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="VVK-zK-6A5"/>
+                            <constraint firstItem="aeT-je-0Tg" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Xqg-De-naz"/>
+                            <constraint firstItem="eks-4f-CqI" firstAttribute="leading" secondItem="aeT-je-0Tg" secondAttribute="leading" constant="20" id="gym-vI-JUf"/>
+                            <constraint firstItem="aeT-je-0Tg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hLU-8A-voL"/>
+                            <constraint firstItem="6fw-Lq-gal" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="hQj-XS-zOX"/>
+                            <constraint firstItem="TCh-52-kYV" firstAttribute="trailing" secondItem="aeT-je-0Tg" secondAttribute="trailing" constant="-20" id="pYu-xY-TO5"/>
+                            <constraint firstItem="TCh-52-kYV" firstAttribute="top" secondItem="aeT-je-0Tg" secondAttribute="top" constant="11" id="tnq-4R-A5b"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="bottomTextField" destination="eks-4f-CqI" id="pnr-Kq-asY"/>
                         <outlet property="cameraButton" destination="SU9-lD-fhX" id="vxD-eW-kbA"/>
                         <outlet property="imagePickerView" destination="aeT-je-0Tg" id="Fi7-rM-deM"/>
+                        <outlet property="topTextField" destination="TCh-52-kYV" id="Mhy-Ga-c6b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
