@@ -101,6 +101,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         textField.text = ""
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text == ""{
+            if textField.tag == 0{
+                textField.text = "TOP"
+            }else{
+                textField.text = "BOTTOM"
+            }
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }
