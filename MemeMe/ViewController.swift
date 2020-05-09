@@ -66,8 +66,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func share(_ sender: Any){
         let memedImage = generateMemedImage()
         let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-        
         present(activityVC, animated: true)
+        activityVC.completionWithItemsHandler = { [weak self] activityType, completed, returnedItems, error in
+            guard let self = self else {return}
+            if completed{
+                self.saveMeme(memedImage: memedImage)
+            }
+        }
     }
     
     @IBAction func cancel(_ sender: Any){
@@ -148,6 +153,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func saveMeme(memedImage:UIImage){
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+        
+        UIImageWriteToSavedPhotosAlbum(meme.memedImage, nil, nil, nil)
     }
     
 }
