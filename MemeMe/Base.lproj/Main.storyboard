@@ -45,15 +45,6 @@
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXm-z8-KEm">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Crz-i5-6et"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem systemItem="action" id="0Mv-Yz-I3o"/>
-                                </items>
-                            </toolbar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="TCh-52-kYV" userLabel="Top Text Field">
                                 <rect key="frame" x="8" y="128" width="398" height="25"/>
                                 <attributedString key="attributedText">
@@ -67,24 +58,35 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQH-5h-5Vn">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Y2s-JY-Epj"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Create Meme" id="EOa-fB-pqS">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="ixv-rJ-sFX"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="pXm-z8-KEm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2lP-pf-lCP"/>
-                            <constraint firstItem="pXm-z8-KEm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5gy-sL-lcF"/>
+                            <constraint firstItem="TCh-52-kYV" firstAttribute="top" secondItem="jQH-5h-5Vn" secondAttribute="bottom" constant="40" id="5ZS-6v-oAd"/>
                             <constraint firstItem="6fw-Lq-gal" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6k1-XG-YDd"/>
+                            <constraint firstItem="aeT-je-0Tg" firstAttribute="top" secondItem="jQH-5h-5Vn" secondAttribute="bottom" id="7xE-6H-HzK"/>
+                            <constraint firstItem="jQH-5h-5Vn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="AG6-IT-cGT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TCh-52-kYV" secondAttribute="trailing" constant="8" id="EAE-DH-8d5"/>
                             <constraint firstItem="eks-4f-CqI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="Exa-2x-waS"/>
                             <constraint firstItem="6fw-Lq-gal" firstAttribute="top" secondItem="aeT-je-0Tg" secondAttribute="bottom" id="PN4-w0-wDm"/>
                             <constraint firstItem="aeT-je-0Tg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UQ6-ih-uA8"/>
+                            <constraint firstItem="jQH-5h-5Vn" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Ugg-zA-iMp"/>
                             <constraint firstItem="6fw-Lq-gal" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="VJT-FN-TAd"/>
                             <constraint firstItem="TCh-52-kYV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="aKD-Zn-02i"/>
-                            <constraint firstItem="TCh-52-kYV" firstAttribute="top" secondItem="pXm-z8-KEm" secondAttribute="bottom" constant="40" id="aTs-x5-eFl"/>
                             <constraint firstItem="TCh-52-kYV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fwV-Ot-eM5"/>
                             <constraint firstItem="aeT-je-0Tg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gL2-je-wAS"/>
+                            <constraint firstItem="jQH-5h-5Vn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gWQ-u7-vN8"/>
                             <constraint firstItem="6fw-Lq-gal" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="j1k-nV-lAQ"/>
-                            <constraint firstItem="pXm-z8-KEm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="noh-cp-vof"/>
-                            <constraint firstItem="aeT-je-0Tg" firstAttribute="top" secondItem="pXm-z8-KEm" secondAttribute="bottom" id="owz-QP-3Ju"/>
                             <constraint firstItem="eks-4f-CqI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ozy-bD-Xwq"/>
                             <constraint firstItem="6fw-Lq-gal" firstAttribute="top" secondItem="eks-4f-CqI" secondAttribute="bottom" constant="50" id="vse-Sr-wIE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eks-4f-CqI" secondAttribute="trailing" constant="8" id="zUj-QI-bkf"/>
@@ -95,7 +97,7 @@
                         <outlet property="bottomTextField" destination="eks-4f-CqI" id="pnr-Kq-asY"/>
                         <outlet property="cameraButton" destination="SU9-lD-fhX" id="vxD-eW-kbA"/>
                         <outlet property="imagePickerView" destination="aeT-je-0Tg" id="Fi7-rM-deM"/>
-                        <outlet property="shareButton" destination="0Mv-Yz-I3o" id="su3-iY-YVm"/>
+                        <outlet property="shareButton" destination="ixv-rJ-sFX" id="vcC-HL-cWd"/>
                         <outlet property="topTextField" destination="TCh-52-kYV" id="Mhy-Ga-c6b"/>
                     </connections>
                 </viewController>
