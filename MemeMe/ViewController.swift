@@ -70,6 +70,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(activityVC, animated: true)
     }
     
+    @IBAction func cancel(_ sender: Any){
+        imagePickerView.image = UIImage()
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
+    }
+    
     
     //MARK: UIImagePickerControllerDelegate functions
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

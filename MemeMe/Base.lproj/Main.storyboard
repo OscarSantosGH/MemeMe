@@ -70,6 +70,11 @@
                                                 <action selector="share:" destination="BYZ-38-t0r" id="3x6-Py-CTX"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="Ouz-dQ-82I">
+                                            <connections>
+                                                <action selector="cancel:" destination="BYZ-38-t0r" id="pZT-rM-Gxp"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
