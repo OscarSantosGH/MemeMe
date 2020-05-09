@@ -64,5 +64,7 @@
 	<string>MemeMe use the camera to create memes with the photos taken by the user</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>MemeMe use your photos to create fun memes</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>MemeMe wants to save the meme that you create in your photo library</string>
 </dict>
 </plist>
