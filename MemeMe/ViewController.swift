@@ -28,6 +28,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillAppear(_ animated: Bool) {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        shareButton.isEnabled = false
         subscribeToKeyboardNotifications()
     }
     
@@ -68,6 +69,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let image = info[.originalImage] as? UIImage {
             imagePickerView.image = image
             picker.dismiss(animated: true, completion: nil)
+            shareButton.isEnabled = true
         }
     }
     
@@ -129,6 +131,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         navBar.isHidden = false
 
         return memedImage
+    }
+    
+    func saveMeme(){
+        
     }
     
 }
