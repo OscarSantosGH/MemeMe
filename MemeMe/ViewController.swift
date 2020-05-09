@@ -19,8 +19,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var toolBar: UIToolbar!
     
-    var memedImage: UIImage?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         topTextField.delegate = self
@@ -63,6 +61,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePickerController.delegate = self
         imagePickerController.sourceType = .photoLibrary
         present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func share(_ sender: Any){
+        let memedImage = generateMemedImage()
+        let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        
+        present(activityVC, animated: true)
     }
     
     
@@ -130,13 +135,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         // TODO: Show toolbar and navbar
         navBar.isHidden = false
-        navBar.isHidden = false
+        toolBar.isHidden = false
 
         return memedImage
     }
     
-    func saveMeme(){
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+    func saveMeme(memedImage:UIImage){
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
     }
     
 }

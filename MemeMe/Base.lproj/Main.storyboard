@@ -65,7 +65,11 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Create Meme" id="EOa-fB-pqS">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="ixv-rJ-sFX"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="ixv-rJ-sFX">
+                                            <connections>
+                                                <action selector="share:" destination="BYZ-38-t0r" id="3x6-Py-CTX"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
