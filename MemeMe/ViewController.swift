@@ -19,6 +19,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var toolBar: UIToolbar!
     
+    var memedImage: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         topTextField.delegate = self
@@ -134,7 +136,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func saveMeme(){
-        
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
     }
     
 }
