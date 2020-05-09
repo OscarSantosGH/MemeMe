@@ -24,6 +24,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         topTextField.delegate = self
         bottomTextField.delegate = self
         setMemeTextAttributes()
+        overrideUserInterfaceStyle = .dark
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +54,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = .camera
+        imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true, completion: nil)
     }
     
@@ -60,6 +62,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = .photoLibrary
+        imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true, completion: nil)
     }
     
@@ -84,11 +87,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //MARK: UIImagePickerControllerDelegate functions
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.originalImage] as? UIImage {
-            imagePickerView.image = image
-            picker.dismiss(animated: true, completion: nil)
-            shareButton.isEnabled = true
+        
+        let alertVC = UIAlertController(title: "Image size", message: "Did you want to crop the image or use the original size", preferredStyle: .alert)
+        let originalAction = UIAlertAction(title: "Original", style: .default) { (action) in
+            if let image = info[.originalImage] as? UIImage {
+                self.imagePickerView.image = image
+                picker.dismiss(animated: true, completion: nil)
+                self.shareButton.isEnabled = true
+            }
         }
+        let editAction = UIAlertAction(title: "Crop", style: .default) { (action) in
+            if let image = info[.editedImage] as? UIImage {
+                self.imagePickerView.image = image
+                picker.dismiss(animated: true, completion: nil)
+                self.shareButton.isEnabled = true
+            }
+        }
+        
+        alertVC.addAction(originalAction)
+        alertVC.addAction(editAction)
+        
+        picker.present(alertVC, animated: true)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
