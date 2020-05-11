@@ -49,21 +49,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .center
     }
-
-    @IBAction func pickAnImageFromCamera(_ sender: Any) {
+    
+    func presentImagePicker(source: UIImagePickerController.SourceType){
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        imagePickerController.sourceType = .camera
+        imagePickerController.sourceType = source
         imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true, completion: nil)
     }
+
+    @IBAction func pickAnImageFromCamera(_ sender: Any) {
+        presentImagePicker(source: .camera)
+    }
     
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.allowsEditing = true
-        present(imagePickerController, animated: true, completion: nil)
+        presentImagePicker(source: .photoLibrary)
     }
     
     @IBAction func share(_ sender: Any){
