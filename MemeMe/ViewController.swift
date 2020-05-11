@@ -89,21 +89,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         let alertVC = UIAlertController(title: "Image size", message: "Did you want to crop the image or use the original size", preferredStyle: .alert)
-        let originalAction = UIAlertAction(title: "Original", style: .default) { (action) in
+        let originalAction = UIAlertAction(title: "Original", style: .cancel) { [weak self] (action) in
+            guard let self = self else {return}
             if let image = info[.originalImage] as? UIImage {
-                self.imagePickerView.image = image
-                picker.dismiss(animated: true, completion: nil)
-                self.shareButton.isEnabled = true
+                self.dismissImagePicker(picker: picker, withImage: image)
             }
         }
-        let editAction = UIAlertAction(title: "Crop", style: .default) { (action) in
+        let editAction = UIAlertAction(title: "Crop", style: .default) { [weak self] (action) in
+            guard let self = self else {return}
             if let image = info[.editedImage] as? UIImage {
-                self.imagePickerView.image = image
-                picker.dismiss(animated: true, completion: nil)
-                self.shareButton.isEnabled = true
+                self.dismissImagePicker(picker: picker, withImage: image)
             }
         }
-        
         alertVC.addAction(originalAction)
         alertVC.addAction(editAction)
         
@@ -111,6 +108,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func dismissImagePicker(picker: UIImagePickerController, withImage image:UIImage){
+        imagePickerView.image = image
+        shareButton.isEnabled = true
         picker.dismiss(animated: true, completion: nil)
     }
     
