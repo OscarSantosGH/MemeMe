@@ -24,6 +24,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         topTextField.delegate = self
         bottomTextField.delegate = self
         setMemeTextAttributes()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        imagePickerView.addGestureRecognizer(tapGesture)
         overrideUserInterfaceStyle = .dark
     }
     
@@ -35,6 +37,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillDisappear(_ animated: Bool) {
         unsubscribeFromKeyboardNotifications()
+    }
+    
+    @objc func imageViewTapped(){
+        presentImagePicker(source: .photoLibrary)
     }
     
     private func setMemeTextAttributes(){
@@ -79,9 +85,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func cancel(_ sender: Any){
-        imagePickerView.image = UIImage()
+        imagePickerView.image = UIImage(named: "imgPlaceholder")
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
+        shareButton.isEnabled = false
     }
     
     
