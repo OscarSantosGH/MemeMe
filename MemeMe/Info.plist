@@ -66,5 +66,9 @@
 	<string>MemeMe use your photos to create fun memes</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>MemeMe wants to save the meme that you create in your photo library</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>impact.ttf</string>
+	</array>
 </dict>
 </plist>
