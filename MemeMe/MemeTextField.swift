@@ -13,7 +13,7 @@ class MemeTextField: UITextField {
     let containerStackView = UIStackView()
     let impactFontBtn = UIButton(type: .roundedRect)
     let helveticaFontBtn = UIButton(type: .roundedRect)
-    let pacificoFontBtn = UIButton(type: .roundedRect)
+    let robotoFontBtn = UIButton(type: .roundedRect)
     var availableFontsArray: Array<UIButton>!
     
     
@@ -24,7 +24,7 @@ class MemeTextField: UITextField {
     
     private func configure(){
         setMemeTextAttributes(withFontName: "impact")
-        availableFontsArray = [impactFontBtn, helveticaFontBtn, pacificoFontBtn]
+        availableFontsArray = [impactFontBtn, helveticaFontBtn, robotoFontBtn]
         containerStackView.frame = CGRect(x: 0, y: 0, width: frame.width, height: 40)
         containerStackView.alignment = .center
         containerStackView.axis = .horizontal
@@ -38,8 +38,8 @@ class MemeTextField: UITextField {
         helveticaFontBtn.setTitle("HELVETICA", for: .normal)
         helveticaFontBtn.addTarget(self, action: #selector(setHelveticaFont), for: .touchUpInside)
         
-        pacificoFontBtn.setTitle("PACIFICO", for: .normal)
-        pacificoFontBtn.addTarget(self, action: #selector(setPacificoFont), for: .touchUpInside)
+        robotoFontBtn.setTitle("ROBOTO", for: .normal)
+        robotoFontBtn.addTarget(self, action: #selector(setPacificoFont), for: .touchUpInside)
         
         for fontBtn in availableFontsArray{
             fontBtn.setTitleColor(.black, for: .normal)
@@ -60,7 +60,7 @@ class MemeTextField: UITextField {
     }
     
     @objc func setPacificoFont(){
-        setMemeTextAttributes(withFontName: "Pacifico-Regular")
+        setMemeTextAttributes(withFontName: "Roboto-Bold")
     }
     
     private func setMemeTextAttributes(withFontName name:String){
