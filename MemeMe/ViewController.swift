@@ -27,6 +27,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
         imagePickerView.addGestureRecognizer(tapGesture)
         overrideUserInterfaceStyle = .dark
+        
+        let accessoryView = FontsAccessoryView(frame: view.frame)
+        
+        topTextField.inputAccessoryView = accessoryView
     }
     
     override func viewWillAppear(_ animated: Bool) {
