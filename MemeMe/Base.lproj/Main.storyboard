@@ -103,7 +103,7 @@
                     <connections>
                         <outlet property="bottomTextField" destination="eks-4f-CqI" id="pnr-Kq-asY"/>
                         <outlet property="cameraButton" destination="SU9-lD-fhX" id="vxD-eW-kbA"/>
-                        <outlet property="imagePickerView" destination="aeT-je-0Tg" id="Fi7-rM-deM"/>
+                        <outlet property="memeImageView" destination="aeT-je-0Tg" id="Fi7-rM-deM"/>
                         <outlet property="navBar" destination="jQH-5h-5Vn" id="yaX-FV-RGG"/>
                         <outlet property="shareButton" destination="ixv-rJ-sFX" id="vcC-HL-cWd"/>
                         <outlet property="toolBar" destination="6fw-Lq-gal" id="3Sd-NP-0QH"/>

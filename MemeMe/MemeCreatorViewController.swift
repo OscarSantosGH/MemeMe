@@ -11,7 +11,7 @@ import UIKit
 class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     //MARK: IBOutlets
-    @IBOutlet weak var imagePickerView: UIImageView!
+    @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationBar!
@@ -27,7 +27,7 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
         bottomTextField.delegate = self
         // Create a UITapGestureRecognizer an add it to imagePickerView to be able to call imageViewTapped function when the user touch it
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
-        imagePickerView.addGestureRecognizer(tapGesture)
+        memeImageView.addGestureRecognizer(tapGesture)
         // Force the view to always use the darkMode. That's a design choice.
         overrideUserInterfaceStyle = .dark
     }
@@ -94,7 +94,7 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
     // This function is called when the user tap the Cancel button.
     @IBAction func cancel(_ sender: Any){
         // The view will reset to his initial state.
-        imagePickerView.image = UIImage(named: "imgPlaceholder")
+        memeImageView.image = UIImage(named: "imgPlaceholder")
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
         shareButton.isEnabled = false
@@ -133,7 +133,7 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
     }
     // Custom dismissImagePicker function that takes the UIImagePickerController to dismiss it and a UIImage to presented
     func dismissImagePicker(picker: UIImagePickerController, withImage image:UIImage){
-        imagePickerView.image = image
+        memeImageView.image = image
         // Enable the share button
         shareButton.isEnabled = true
         picker.dismiss(animated: true, completion: nil)
@@ -212,7 +212,7 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
     //MARK: Save Meme to PhotoAlbum
     func saveMeme(memedImage:UIImage){
         // Create a Meme object
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeImageView.image!, memedImage: memedImage)
         // Save the memedImage of the Meme object to PhotoAlbum
         UIImageWriteToSavedPhotosAlbum(meme.memedImage, nil, nil, nil)
     }
