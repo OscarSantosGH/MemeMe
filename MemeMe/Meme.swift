@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// Meme struct that save the top and bottom texts and the original and memedImage (original image + both texts).
 struct Meme {
     let topText: String
     let bottomText: String
