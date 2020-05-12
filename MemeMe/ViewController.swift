@@ -12,8 +12,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     @IBOutlet weak var imagePickerView: UIImageView!
-    @IBOutlet weak var topTextField: UITextField!
-    @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var topTextField: MemeTextField!
+    @IBOutlet weak var bottomTextField: MemeTextField!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationBar!
@@ -23,14 +23,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         topTextField.delegate = self
         bottomTextField.delegate = self
-        setMemeTextAttributes()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
         imagePickerView.addGestureRecognizer(tapGesture)
         overrideUserInterfaceStyle = .dark
         
-        let accessoryView = FontsAccessoryView(frame: view.frame)
-        
-        topTextField.inputAccessoryView = accessoryView
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,19 +41,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @objc func imageViewTapped(){
         presentImagePicker(source: .photoLibrary)
-    }
-    
-    private func setMemeTextAttributes(){
-        let memeTextAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.strokeColor: UIColor.black,
-            NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "impact", size: 40)!,
-            NSAttributedString.Key.strokeWidth:  -3
-        ]
-        topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .center
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = .center
     }
     
     func presentImagePicker(source: UIImagePickerController.SourceType){
