@@ -215,6 +215,10 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeImageView.image!, memedImage: memedImage)
         // Save the memedImage of the Meme object to PhotoAlbum
         UIImageWriteToSavedPhotosAlbum(meme.memedImage, nil, nil, nil)
+        // Add it to the memes array in the Application Delegate
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
 }
