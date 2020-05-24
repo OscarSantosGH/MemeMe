@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Aoi-ed-hlw">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -106,7 +106,7 @@
         <!--Sent Memes-->
         <scene sceneID="w3b-QV-a4W">
             <objects>
-                <viewController id="DOB-07-2Rg" sceneMemberID="viewController">
+                <viewController id="DOB-07-2Rg" customClass="MemeTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="45z-Rd-P64">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,7 +115,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemeTableCell" rowHeight="150" id="n1k-Kj-Aao">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MemeTableCell" rowHeight="150" id="n1k-Kj-Aao" customClass="MemeTableViewCell" customModule="MemeMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n1k-Kj-Aao" id="LMM-a1-l59">
@@ -160,6 +160,11 @@
                                                 <constraint firstItem="JvX-os-wgI" firstAttribute="top" secondItem="LMM-a1-l59" secondAttribute="topMargin" id="pZr-3w-2fD"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bottomLabel" destination="iKN-c8-gEj" id="6dU-Y6-0SF"/>
+                                            <outlet property="memeImageView" destination="XdC-QA-1sk" id="zZf-nu-o8m"/>
+                                            <outlet property="topLabel" destination="JvX-os-wgI" id="KRN-iX-7n9"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -174,9 +179,20 @@
                         <viewLayoutGuide key="safeArea" id="oKm-22-Oz2"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sent Memes" id="Z1m-4u-hef">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1P7-mq-9Iv"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="Gg5-5i-xlK">
+                            <connections>
+                                <action selector="editMemes:" destination="DOB-07-2Rg" id="YOc-p2-vQT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1P7-mq-9Iv">
+                            <connections>
+                                <action selector="createNewMeme:" destination="DOB-07-2Rg" id="7eM-xZ-uZ3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editMemeButton" destination="Gg5-5i-xlK" id="4Yp-IE-WEF"/>
+                        <outlet property="memeTableView" destination="fhQ-8T-Bhe" id="O9T-yi-qeK"/>
                         <segue destination="qXW-t0-vEb" kind="show" identifier="MemeDetailSegue" id="wn2-Qw-22i"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="CreateMemeSegue" id="nPK-7z-ta5"/>
                     </connections>
