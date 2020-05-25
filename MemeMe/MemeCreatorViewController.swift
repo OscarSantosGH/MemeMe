@@ -46,8 +46,11 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
     
     // This objc function is called when the user tap on imagePickerView.
     @objc func imageViewTapped(){
-        // Present the image picker controller with photoLibrary sourceType.
-        presentImagePicker(source: .photoLibrary)
+        //Check if shareButton isn't enable, this is to present the image picker only if the didn't select an image yet.
+        if !shareButton.isEnabled{
+            // Present the image picker controller with photoLibrary sourceType.
+            presentImagePicker(source: .photoLibrary)
+        }
     }
     
     // Present the UIImagePickerController with the sourceType parameter to be able to choose the source from the call side.
@@ -93,11 +96,8 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
     }
     // This function is called when the user tap the Cancel button.
     @IBAction func cancel(_ sender: Any){
-        // The view will reset to his initial state.
-        memeImageView.image = UIImage(named: "imgPlaceholder")
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
-        shareButton.isEnabled = false
+        // Dismiss the MemeCreatorViewController.
+        self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: UIImagePickerControllerDelegate functions
