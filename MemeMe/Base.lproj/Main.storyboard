@@ -77,7 +77,7 @@
         <!--Meme Detail-->
         <scene sceneID="MfS-96-Shm">
             <objects>
-                <viewController title="Meme Detail" id="qXW-t0-vEb" sceneMemberID="viewController">
+                <viewController title="Meme Detail" id="qXW-t0-vEb" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="csA-yS-Hip">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,8 +96,15 @@
                         <viewLayoutGuide key="safeArea" id="XRg-wn-upM"/>
                     </view>
                     <navigationItem key="navigationItem" id="bpb-Wr-Dy2">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="QO9-8a-DCI"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="QO9-8a-DCI">
+                            <connections>
+                                <action selector="editButtonAction:" destination="qXW-t0-vEb" id="lM3-mi-jsL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="memeImageView" destination="wXY-yQ-baV" id="3JL-G6-70N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEU-xu-2nO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
