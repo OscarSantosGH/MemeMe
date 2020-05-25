@@ -28,8 +28,6 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
         // Create a UITapGestureRecognizer an add it to imagePickerView to be able to call imageViewTapped function when the user touch it
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
         memeImageView.addGestureRecognizer(tapGesture)
-        // Force the view to always use the darkMode. That's a design choice.
-        overrideUserInterfaceStyle = .dark
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,6 +75,8 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func share(_ sender: Any){
         // Get an UIImage with the top an bottom labels
         let memedImage = generateMemedImage()
+        //DELETE THIS vvvv : ONLY for testing
+        saveMeme(memedImage: memedImage)
         // Create an UIActivityViewController with the memedImage as activityItem.
         let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         present(activityVC, animated: true)
@@ -214,11 +214,13 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
         // Create a Meme object
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeImageView.image!, memedImage: memedImage)
         // Save the memedImage of the Meme object to PhotoAlbum
-        UIImageWriteToSavedPhotosAlbum(meme.memedImage, nil, nil, nil)
+        //UIImageWriteToSavedPhotosAlbum(meme.memedImage, nil, nil, nil)
         // Add it to the memes array in the Application Delegate
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
+        // dismiss MemeCreatorViewController after saving the meme
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

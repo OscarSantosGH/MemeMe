@@ -23,6 +23,20 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Set the dataSource of the table to MemeTableViewController
+        memeTableView.dataSource = self
+        // Set the delegate of the table to MemeTableViewController
+        memeTableView.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        reloadTableView()
+    }
+    
+    func reloadTableView(){
+        // reload the data of the tableView
+        memeTableView.reloadData()
         // enable editMemeButton only if the memes array isn't empty.
         editMemeButton.isEnabled = !memes.isEmpty
     }
@@ -46,6 +60,12 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemeTableCell") as! MemeTableViewCell
         cell.set(with: memes[indexPath.row])
         return cell
+    }
+    
+    //MARK: UITableViewDelegate methods
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Set the height for the cells
+        return 150
     }
     
     
