@@ -186,11 +186,6 @@
                         <viewLayoutGuide key="safeArea" id="oKm-22-Oz2"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sent Memes" id="Z1m-4u-hef">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="Gg5-5i-xlK">
-                            <connections>
-                                <action selector="editMemes:" destination="DOB-07-2Rg" id="YOc-p2-vQT"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="1P7-mq-9Iv">
                             <connections>
                                 <action selector="createNewMeme:" destination="DOB-07-2Rg" id="7eM-xZ-uZ3"/>
@@ -198,7 +193,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editMemeButton" destination="Gg5-5i-xlK" id="4Yp-IE-WEF"/>
                         <outlet property="memeTableView" destination="fhQ-8T-Bhe" id="O9T-yi-qeK"/>
                         <segue destination="qXW-t0-vEb" kind="show" identifier="MemeDetailSegue" id="wn2-Qw-22i"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="CreateMemeSegue" id="nPK-7z-ta5"/>
@@ -369,8 +363,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Kpr-gS-cXT"/>
-        <segue reference="d8R-av-bke"/>
+        <segue reference="nPK-7z-ta5"/>
+        <segue reference="wn2-Qw-22i"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="imgPlaceholder" width="402" height="794"/>

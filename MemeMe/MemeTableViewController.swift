@@ -10,9 +10,8 @@ import UIKit
 
 class MemeTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    //MARK: IBOutlets
+    //MARK: IBOutlet
     @IBOutlet weak var memeTableView: UITableView!
-    @IBOutlet weak var editMemeButton: UIBarButtonItem!
     
     // computed property with all the memes from the memes array in appDelegate
     var memes: [Meme]! {
@@ -37,16 +36,10 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     func reloadTableView(){
         // reload the data of the tableView
         memeTableView.reloadData()
-        // enable editMemeButton only if the memes array isn't empty.
-        editMemeButton.isEnabled = !memes.isEmpty
     }
     
     
-    //MARK: IBActions
-    @IBAction func editMemes(_ sender: Any) {
-        
-    }
-    
+    //MARK: IBAction
     @IBAction func createNewMeme(_ sender: Any) {
         self.performSegue(withIdentifier: "CreateMemeSegue", sender: nil)
     }
