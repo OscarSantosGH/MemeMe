@@ -73,6 +73,15 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
         performSegue(withIdentifier: "MemeDetailSegue", sender: memes[indexPath.row])
     }
     
+    // Method use to enable "Swipe to delete" on the tableView
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // if the editingStyle is .delete the meme will be remove from the appDelegate memes array and the row in the table
+        if editingStyle == .delete {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.memes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
     
     
     // MARK: - Navigation
