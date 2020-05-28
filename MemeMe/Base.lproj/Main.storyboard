@@ -108,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEU-xu-2nO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="70" y="340"/>
+            <point key="canvasLocation" x="125" y="396"/>
         </scene>
         <!--Sent Memes-->
         <scene sceneID="w3b-QV-a4W">
@@ -229,7 +229,7 @@
         <!--Meme Creator View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="MemeCreatorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeCreatorViewController" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="MemeCreatorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -326,7 +326,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="70" y="-336"/>
+            <point key="canvasLocation" x="125" y="-373"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cMj-ep-jsc">
@@ -369,8 +369,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="nPK-7z-ta5"/>
-        <segue reference="wn2-Qw-22i"/>
+        <segue reference="Kpr-gS-cXT"/>
+        <segue reference="d8R-av-bke"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="imgPlaceholder" width="402" height="794"/>

@@ -8,26 +8,34 @@
 
 import UIKit
 
-class MemeDetailViewController: UIViewController {
+class MemeDetailViewController: UIViewController, MemeCreatorViewControllerDelegate {
+    
     
     //MARK: Outlets
     @IBOutlet weak var memeImageView: UIImageView!
     
-    // Propertie
+    // Property
     var meme:Meme?
-    var memeIndex:Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         memeImageView.image = meme?.memedImage
     }
     
     
-    //MARK: IBActions
+    //MARK: - IBActions
     @IBAction func editButtonAction(_ sender: Any) {
+        //performSegue(withIdentifier: "CreateMemeSegue", sender: nil)
+        let memeCreatorViewController = storyboard?.instantiateViewController(withIdentifier: "MemeCreatorViewController") as! MemeCreatorViewController
+        memeCreatorViewController.memeToEdit = meme
+        memeCreatorViewController.isEditingMeme = true
+        memeCreatorViewController.presentingDelegate = self
+        present(memeCreatorViewController, animated: true)
     }
     
+    func goToRootViewController() {
+        navigationController?.popToRootViewController(animated: true)
+    }
 
 }

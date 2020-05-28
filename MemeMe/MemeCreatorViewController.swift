@@ -8,6 +8,11 @@
 
 import UIKit
 
+// protocol created to tell the delegate (in this case MemeDetailViewController) to goto the rootViewController
+protocol MemeCreatorViewControllerDelegate: class {
+    func goToRootViewController()
+}
+
 class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     //MARK: IBOutlets
@@ -20,11 +25,17 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var topTextField: MemeTextField!
     @IBOutlet weak var bottomTextField: MemeTextField!
     
+    // this 3 variables are used in case that the MemeCreatorViewController is used to edit a Meme
+    var memeToEdit:Meme?
+    var isEditingMeme:Bool = false
+    weak var presentingDelegate:MemeCreatorViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set the delegate of the textField to MemeCreatorViewController
         topTextField.delegate = self
         bottomTextField.delegate = self
+        
         // Create a UITapGestureRecognizer an add it to imagePickerView to be able to call imageViewTapped function when the user touch it
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
         memeImageView.addGestureRecognizer(tapGesture)
@@ -33,15 +44,32 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
     override func viewWillAppear(_ animated: Bool) {
         // Disable the camera button if the device doesn't had a camera (like the simulator).
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        // Disable the share button because at this point the user doesn't have a meme to share.
-        shareButton.isEnabled = false
         // subscribeToKeyboardNotifications function set a listener to the view that activate when the keyboard appear and disappear.
         subscribeToKeyboardNotifications()
+        // set the values of the textFields and the imageView
+        configureUI()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         // unsubscribeFromKeyboardNotifications function remove the listener from the view.
         unsubscribeFromKeyboardNotifications()
+    }
+    
+    func configureUI(){
+        // check if the MemeCreatorViewController is editing a Meme to configure the UI properly
+        if isEditingMeme{
+            guard let memeToEdit = memeToEdit else {return}
+            topTextField.text = memeToEdit.topText
+            bottomTextField.text = memeToEdit.bottomText
+            memeImageView.image = memeToEdit.originalImage
+        }else{
+            // The view will reset to his initial state.
+            memeImageView.image = UIImage(named: "imgPlaceholder")
+            topTextField.text = "TOP"
+            bottomTextField.text = "BOTTOM"
+            // Disable the share button because at this point the user doesn't have a meme to share.
+            shareButton.isEnabled = false
+        }
     }
     
     // This objc function is called when the user tap on imagePickerView.
@@ -81,18 +109,19 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
         //DELETE THIS vvvv : ONLY for testing
         saveMeme(memedImage: memedImage)
         // Create an UIActivityViewController with the memedImage as activityItem.
-        let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-        present(activityVC, animated: true)
+        //let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        //present(activityVC, animated: true)
         // The completion handler to execute after the activity view controller is dismissed.
         // Used [weak self] capture list to prevent retain cycles.
-        activityVC.completionWithItemsHandler = { [weak self] activityType, completed, returnedItems, error in
+        
+        //activityVC.completionWithItemsHandler = { [weak self] activityType, completed, returnedItems, error in
             // This is a handy trick to save unwraps self
-            guard let self = self else {return}
+            //guard let self = self else {return}
             // if the UIActivityViewController is dismissed without problems _saveMeme_ function will be called
-            if completed{
-                self.saveMeme(memedImage: memedImage)
-            }
-        }
+            //if completed{
+            //    self.saveMeme(memedImage: memedImage)
+            //}
+        //}
     }
     // This function is called when the user tap the Cancel button.
     @IBAction func cancel(_ sender: Any){
@@ -100,7 +129,7 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
         self.dismiss(animated: true, completion: nil)
     }
     
-    //MARK: UIImagePickerControllerDelegate functions
+    //MARK: - UIImagePickerControllerDelegate functions
     // This function will be called when the user finish Picking the image.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Create a UIAlertController with 2 action to give the user the ability to choose between the original image size or the crop version
@@ -139,7 +168,7 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
         picker.dismiss(animated: true, completion: nil)
     }
     
-    //MARK: UITextFieldDelegate functions
+    //MARK: - UITextFieldDelegate functions
     // Erase the content of the textField when the user tap begin editing
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
@@ -159,7 +188,7 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
         textField.resignFirstResponder()
     }
     
-    //MARK: NSNotifications functions
+    //MARK: - NSNotifications functions
     // Set a listener to the view that activate when the keyboard appear and disappear.
     func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -189,7 +218,7 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     
-    //MARK: generate Meme image
+    //MARK: - generate Meme image
     func generateMemedImage() -> UIImage {
 
         // Hide toolbar and navbar
@@ -209,7 +238,7 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
         return memedImage
     }
     
-    //MARK: Save Meme to PhotoAlbum
+    //MARK: - Save Meme to PhotoAlbum
     func saveMeme(memedImage:UIImage){
         // Create a Meme object
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeImageView.image!, memedImage: memedImage)
@@ -219,8 +248,20 @@ class MemeCreatorViewController: UIViewController, UIImagePickerControllerDelega
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
-        // dismiss MemeCreatorViewController after saving the meme
-        self.dismiss(animated: true, completion: nil)
+        
+        if isEditingMeme{
+            // check if presentingDelegate isn't nil
+            if let presentingDelegate = presentingDelegate{
+                self.dismiss(animated: true, completion: {
+                    //self.presentingViewController?.navigationController?.popToRootViewController(animated: true)
+                    presentingDelegate.goToRootViewController()
+                })
+            }
+        }else{
+            // dismiss MemeCreatorViewController after saving the meme
+           self.dismiss(animated: true, completion: nil)
+        }
+        
     }
     
 }

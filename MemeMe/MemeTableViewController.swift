@@ -70,9 +70,7 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // create a dictionary to store the selected meme and its index
-        var selectedMemeDict = Dictionary<Int,Meme>()
-        selectedMemeDict[indexPath.row] = memes[indexPath.row]
-        performSegue(withIdentifier: "MemeDetailSegue", sender: selectedMemeDict)
+        performSegue(withIdentifier: "MemeDetailSegue", sender: memes[indexPath.row])
     }
     
     
@@ -86,9 +84,8 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
             // Get the new view controller using segue.destination.
             let destinationViewController = segue.destination as! MemeDetailViewController
             // Pass the selected object to the new view controller.
-            let selectedMemeDict = sender as! Dictionary<Int,Meme>
-            destinationViewController.meme = selectedMemeDict.first?.value
-            destinationViewController.memeIndex = selectedMemeDict.first?.key
+            let selectedMeme = sender as! Meme
+            destinationViewController.meme = selectedMeme
         }
     }
     
