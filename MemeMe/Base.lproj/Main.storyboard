@@ -16,7 +16,7 @@
         <!--Sent Memes-->
         <scene sceneID="93c-wQ-G6F">
             <objects>
-                <viewController id="3Fj-lK-JtA" sceneMemberID="viewController">
+                <viewController id="3Fj-lK-JtA" customClass="MemeCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zZ0-7f-NbP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,21 +24,21 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5ud-nc-DjD">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="txP-NO-dHf">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="txP-NO-dHf">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemeCollectionCell" id="ADz-AS-zxJ">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemeCollectionCell" id="ADz-AS-zxJ" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="j2a-kk-NJt">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xZb-Lu-lxj">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xZb-Lu-lxj">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                 </imageView>
                                             </subviews>
@@ -49,6 +49,9 @@
                                                 <constraint firstItem="xZb-Lu-lxj" firstAttribute="leading" secondItem="j2a-kk-NJt" secondAttribute="leading" id="vmj-g4-Dc2"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="memeImageView" destination="xZb-Lu-lxj" id="NzN-LM-r7u"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -63,9 +66,15 @@
                         <viewLayoutGuide key="safeArea" id="fsd-06-Wzn"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sent Memes" id="zoo-JT-KgM">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3cl-bT-kKy"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3cl-bT-kKy">
+                            <connections>
+                                <action selector="createNewMeme:" destination="3Fj-lK-JtA" id="ldT-ZF-jsy"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="flowLayout" destination="txP-NO-dHf" id="9Pb-Ja-IsR"/>
+                        <outlet property="memeCollectionView" destination="5ud-nc-DjD" id="aBg-TY-chx"/>
                         <segue destination="qXW-t0-vEb" kind="show" identifier="MemeDetailSegue" id="d8R-av-bke"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="CreateMemeSegue" id="Kpr-gS-cXT"/>
                     </connections>
@@ -363,8 +372,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="nPK-7z-ta5"/>
-        <segue reference="wn2-Qw-22i"/>
+        <segue reference="Kpr-gS-cXT"/>
+        <segue reference="d8R-av-bke"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="imgPlaceholder" width="402" height="794"/>
