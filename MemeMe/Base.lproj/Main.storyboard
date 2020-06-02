@@ -73,7 +73,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="flowLayout" destination="txP-NO-dHf" id="9Pb-Ja-IsR"/>
                         <outlet property="memeCollectionView" destination="5ud-nc-DjD" id="aBg-TY-chx"/>
                         <segue destination="qXW-t0-vEb" kind="show" identifier="MemeDetailSegue" id="d8R-av-bke"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="CreateMemeSegue" id="Kpr-gS-cXT"/>

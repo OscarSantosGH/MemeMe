@@ -8,11 +8,10 @@
 
 import UIKit
 
-class MemeCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MemeCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
     // MARK: Outlets
     @IBOutlet weak var memeCollectionView: UICollectionView!
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     // computed property with all the memes from the memes array in appDelegate
     var memes: [Meme]! {
@@ -27,22 +26,11 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDataSource
         memeCollectionView.dataSource = self
         // Set the delegate of the collection to MemeCollectionViewController
         memeCollectionView.delegate = self
-        
-        configureFlowLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reloadCollectionView()
-    }
-    
-    func configureFlowLayout(){
-        let space:CGFloat = 3.0
-        let dimension = (view.frame.size.width - (2 * space)) / 3.0
-
-        flowLayout.minimumInteritemSpacing = space
-        flowLayout.minimumLineSpacing = space
-        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
     }
     
     func reloadCollectionView(){
@@ -85,4 +73,32 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDataSource
         }
     }
 
+}
+
+// extension of MemeCollectionViewController that implement flowLayout delegate methods
+extension MemeCollectionViewController: UICollectionViewDelegateFlowLayout{
+    // set the minimum line spacing for the section
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 3.0
+    }
+    // set the minimum spacing between items
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 3.0
+    }
+    // set the size of the items
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // calculate the item size depending of the device orientation
+        return calculateItemWidth(isPortrait: view.frame.size.height > view.frame.size.width)
+        
+    }
+    // calculate the width of the collectionView minus the number of spaces between items in one row multiply by 3(the value in pixel of each space) divided by the number of items in each row
+    func calculateItemWidth(isPortrait:Bool) -> CGSize{
+        var dimension:CGFloat
+        if isPortrait{
+            dimension = (memeCollectionView.frame.size.width - (2 * 3.0)) / 3.0
+        }else{
+            dimension = (memeCollectionView.frame.size.width - (4 * 3.0)) / 5.0
+        }
+        return CGSize(width: dimension, height: dimension)
+    }
 }
